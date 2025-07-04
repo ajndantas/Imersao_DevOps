@@ -1,0 +1,18 @@
+#
+#version: "3.8"
+
+services:
+  app:
+    build: . # . (dot) means "use the current directory" as the build context. 
+             # Docker will look for a Dockerfile in this directory.
+    container_name: api # The container_name: api line in your docker-compose.yml file 
+                        # explicitly sets the name of the container that will be created for this service 
+                        # to api
+    ports:
+      - "8000:8000" # The ports section in your docker-compose.yml file is used to map network 
+                    # ports from the container to the host machine. The line - "8000:8000" means that 
+                    # port 8000 on your local computer (the host) will be forwarded to port 8000 
+                    # inside the container. This allows you to access any service running on port 8000 
+                    # within the container (such as a web server or API) by connecting to localhost:8000 
+                    # on your machine. This mapping is essential for making containerized applications 
+                    # accessible from outside the Docker environment.
