@@ -32,6 +32,7 @@ gcloud auth login # AGORA SE FICA AUTENTICADO COM A CLI gcloud
 
 # SELECIONANDO O MEU PROJETO
 gcloud config set project PROJECT_ID # Nesse link, se obtém o project id. https://console.cloud.google.com/welcome?hl=pt-br&inv=1&invt=Ab15Zw&project=imersaodevopsalura)
+gcloud config set project imersaodevopsalura
 
 # FAZ O DEPLOY DA MINHA APLICAÇÃO NO CLOUDRUN
 
