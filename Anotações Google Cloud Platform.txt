@@ -56,30 +56,26 @@ Gerenciado: o Google cuida da infraestrutura, balanceamento, escalonamento e seg
 
 Baseado em eventos: ideal para APIs, webhooks, microserviços, etc.
 
-gcloud run deploy --port=8000
-(venv) G:\Meu Drive\Cursos e Treinamentos\Cientista de Dados\Treinamento Python\Imersao DevOps Alura>gcloud run deploy --port=8000
-Deploying from source. To deploy a container use [--image]. See https://cloud.google.com/run/docs/deploying-source-code for more details.
-Source code location (G:\Meu Drive\Cursos e Treinamentos\Cientista de Dados\Treinamento Python\Imersao DevOps Alura):  
-
-# NESSE PONTO O CLOUDRUN SOLICITA O DIRETÓRIO DA MINHA APLICAÇÃO, COMO É ESSE MESMO, BASTA DAR ENTER
-Next time, you can use `--source .` argument to deploy the current directory.
+# REALIZANDO O DEPLOY A PARTIR DO DIRETÓRIO ATUAL DA APLICAÇÃO
+gcloud run deploy --port=8000 --source . 
 
 Service name (imersaodevopsalura): api # INFORME AQUI O NOME DO SERVIÇO(CONTAINER), VAMOS COLOCAR API, COMO INFORMADO EM NOSSO docker compose 
 
+# PRECISAMOS ATIVAR TODAS ESSAS APIs
 The following APIs are not enabled on project [imersaodevopsalura]:
-        artifactregistry.googleapis.com # SDK DO GOOGLE AONDE É GUARDADA A IMAGEM
+        artifactregistry.googleapis.com # SDK DO GOOGLE AONDE É GUARDADA A IMAGEM. UM REPOSITÓRIO
         cloudbuild.googleapis.com       # SDK DO GOOGLE QUE FAZ O BUILD DA IMAGEM
         run.googleapis.com              # SDK DO GOOGLE QUE COLOCA A APLICAÇÃO NO AMBIENTE SERVERLESS
-
-# PRECISAMOS ATIVAR TODAS ESSAS APIs
 
 Do you want enable these APIs to continue (this will take a few minutes)? (Y/n)?  y
 
 Enabling APIs on project [imersaodevopsalura]...
 Operation "operations/acf.p2-570342663148-9d46ce8e-5633-4052-88bd-8f2b0e9b4a44" finished successfully.
-Please specify a region: # ESCOLHER A REGIÃO DE ATIVAÇÃO.
 
-Please enter numeric choice or text value (must exactly match list item):  32 #18:40 da aula
+# ESCOLHER A REGIÃO DE ATIVAÇÃO.
+Please specify a region: 
+
+Please enter numeric choice or text value (must exactly match list item):  32
 
 # CRIAÇÃO DO artifactregistry PARA ARMAZENAR OS CONTAINERS
 
@@ -103,6 +99,24 @@ Building using Dockerfile and deploying container to Cloud Run service [api] in 
   .  Routing traffic...
   .  Setting IAM Policy...
 
+  # NO LINK DO Artifact Registries, É POSSÍVEL VER O REPOSITÓRIO CRIADO
+  https://console.cloud.google.com/artifacts?referrer=search&hl=pt-BR&inv=1&invt=Ab2Crg&project=imersaodevopsalura
+
+  # DENTRO DO REPOSITÓRIO, PODEMOS VER A IMAGEM QUE ACABAMOS DE CRIAR
+  https://console.cloud.google.com/artifacts/docker/imersaodevopsalura/southamerica-east1/cloud-run-source-deploy?hl=pt-BR&inv=1&invt=Ab2Crg&project=imersaodevopsalura
+
+  # NO CLOUDRUN - TEMOS OUTRAS INFORMAÇÕES, INCLUSIVE A URL PARA ACESSAR A APLICAÇÃO
+  
+  # CONFIGURANDO CI COM GITHUB
+  Para isso, precisamos utilizar o cloudbuild, dentro do CLOUDRUN
+  https://console.cloud.google.com/run/create?enableapi=false&deploymentType=repository&hl=pt-BR&inv=1&invt=Ab2DIQ&project=imersaodevopsalura
+
+   - DIFERENÇA ENTRE OS TIPOS DE BUILD
+  https://chatgpt.com/share/686abf66-7d7c-8006-a411-355c6649c300
+
+  Tipo de build
+    - Dockerfile
+    - Go, Node.js, Python, Java, .NET Core, Ruby ou PHP usando buildpacks do Google Cloud 
 
 
 💡 Exemplo com Google Artifact Registry (Docker)
@@ -123,10 +137,7 @@ gcloud services enable artifactregistry.googleapis.com
 ✅ 2. Criar um repositório no Artifact Registry
 Exemplo: repositório Docker na região us-central1
 
-gcloud artifacts repositories create meu-repo-docker \
-  --repository-format=docker \
-  --location=us-central1 \
-  --description="Repositório Docker para meus serviços"
+gcloud artifacts repositories create meu-repo-docker --repository-format=docker --location=us-central1 --description="Repositório Docker para meus serviços"
 
 ✅ 3. Autenticar Docker com o Artifact Registry
 
@@ -157,9 +168,18 @@ containers:
 
 🔐 Permissões recomendadas
 Para permitir que outros serviços façam pull de imagens, a conta de serviço precisa da permissão:
-
-
 roles/artifactregistry.reader
+
 
 ✅ 6. (Opcional) Listar imagens no repositório
 gcloud artifacts docker images list us-central1-docker.pkg.dev/SEU_PROJETO/meu-repo-docker
+
+# FAZENDO PULL DE IMAGENS DO GCP
+1 - Conceder autenticação do Docker no GCP
+gcloud auth configure-docker southamerica-east1-docker.pkg.dev
+
+2 - Lista as imagens
+gcloud artifacts docker images list
+
+3 - Executa o pull
+docker pull southamerica-east1-docker.pkg.dev/imersaodevopsalura/cloud-run-source-deploy/api:latest
