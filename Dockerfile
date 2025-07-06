@@ -31,7 +31,9 @@ COPY . .
 EXPOSE 8000
 
 # Command to run the application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+## BOM PARA DESENVOLVIMENTO, MAS NÃO É BOM PARA PRODUÇÃO, POIS O --reload RECARREGA A APLICAÇÃO A CADA MUDANÇA NO CÓDIGO
+#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"] 
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # PARA CRIAR A IMAGEM, EXECUTAR O COMANDO ABAIXO NO TERMINAL, AONDE -t É A TAG DA IMAGEM E O "." É O DIRETÓRIO ATUAL. O DOCKER PRECISA ESTAR RODANDO.
 # docker build -t api .

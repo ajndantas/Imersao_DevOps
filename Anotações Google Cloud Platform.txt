@@ -30,6 +30,14 @@ Ao término da instalação, não precisa iniciar o Google Cloud Shell, isso ser
 # AUTENTICANDO NO GOOGLE Cloud
 gcloud auth login # AGORA SE FICA AUTENTICADO COM A CLI gcloud
 
+Your browser has been opened to visit:
+
+https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&
+scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F
+%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com
+%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=3N73Gb183dM08KCighZT8UpAU83sqe&access_type=offline&
+code_challenge=aIQJh0mVe5Y4KasRIQ1Z_8qxwnTmrmsfeTTiuyLReRo&code_challenge_method=S256
+
 # SELECIONANDO O MEU PROJETO
 gcloud config set project PROJECT_ID # Nesse link, se obtém o project id. https://console.cloud.google.com/welcome?hl=pt-br&inv=1&invt=Ab15Zw&project=imersaodevopsalura)
 gcloud config set project imersaodevopsalura
@@ -71,9 +79,10 @@ Enabling APIs on project [imersaodevopsalura]...
 Operation "operations/acf.p2-570342663148-9d46ce8e-5633-4052-88bd-8f2b0e9b4a44" finished successfully.
 Please specify a region: # ESCOLHER A REGIÃO DE ATIVAÇÃO.
 
-Please enter numeric choice or text value (must exactly match list item):  32
+Please enter numeric choice or text value (must exactly match list item):  32 #18:40 da aula
 
 # CRIAÇÃO DO artifactregistry PARA ARMAZENAR OS CONTAINERS
+
 To make this the default region, run `gcloud config set run/region southamerica-east1`.
 
 Deploying from source requires an Artifact Registry Docker repository to store built containers. A repository named [cloud-run-source-deploy] in region [southamerica-east1] will be
