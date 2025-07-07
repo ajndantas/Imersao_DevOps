@@ -1,2 +1,5 @@
+O exemplo aqui (https://github.com/ajndantas/Imersao_DevOps/blob/main/.github/workflows/docker-image.yml) foi criado no GitHub e é para CI Local, sem publicação. 
+Para publicar, ver explicação abaixo.
+
 Explicação
 https://chatgpt.com/share/686b23ed-1174-8006-b577-7ea65123e75e
