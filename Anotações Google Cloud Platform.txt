@@ -111,7 +111,7 @@ Building using Dockerfile and deploying container to Cloud Run service [api] in 
   Para isso, precisamos utilizar o cloudbuild, dentro do CLOUDRUN
   https://console.cloud.google.com/run/create?enableapi=false&deploymentType=repository&hl=pt-BR&inv=1&invt=Ab2DIQ&project=imersaodevopsalura
 
-   - DIFERENÇA ENTRE OS TIPOS DE BUILD
+   - DIFERENÇA ENTRE OS TIPOS DE BUILD. AMBOS CRIAM A IMAGEM DO CONTAINER
   https://chatgpt.com/share/686abf66-7d7c-8006-a411-355c6649c300
 
   Tipo de build
@@ -124,11 +124,11 @@ Building using Dockerfile and deploying container to Cloud Run service [api] in 
 🛠️ Pré-requisitos
 Conta no Google Cloud
 
-Projeto criado no GCP
-
-SDK do Google Cloud instalado
-
-https://cloud.google.com/sdk/docs/install
+# FAZENDO CI NO GCP
+PRÉ-REQUISITOS
+- Projeto criado no GCP
+- SDK do Google Cloud instalado
+  https://cloud.google.com/sdk/docs/install
 
 ✅ 1. Ativar o Artifact Registry no seu projeto
 
@@ -182,4 +182,4 @@ gcloud auth configure-docker southamerica-east1-docker.pkg.dev
 gcloud artifacts docker images list
 
 3 - Executa o pull
-docker pull southamerica-east1-docker.pkg.dev/imersaodevopsalura/cloud-run-source-deploy/api:latest
+docker pull southamerica-east1-docker.pkg.dev/imersaodevopsalura/cloud-run-source-deploy/api:latestcls
