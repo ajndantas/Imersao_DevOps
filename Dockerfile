@@ -42,7 +42,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 #
 # docker images -> PARA VER AS IMAGENS CRIADAS
 #
-# docker run -p 8000:8000 api <nome da imagem> -> PARA RODAR A IMAGEM CRIADA, MAPEANDO A PORTA 8000 DO CONTAINER PARA A PORTA 8000 DA APLICAÇÃO
+# docker run -p 8000:8000 <nome da imagem> -> PARA RODAR A IMAGEM CRIADA, MAPEANDO A PORTA 8000 DO CONTAINER PARA A PORTA 8000 DA APLICAÇÃO
 #
 #(venv) PS G:\Meu Drive\Cursos e Treinamentos\Cientista de Dados\Treinamento Python\Imersao DevOps Alura> docker run -p 8000:8000 api
 #INFO:     Will watch for changes in these directories: ['/app']
