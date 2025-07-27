@@ -8,6 +8,10 @@ services:
     container_name: api # The container_name: api line in your docker-compose.yml file 
                         # explicitly sets the name of the container that will be created for this service 
                         # to api
+
+    restart: unless-stopped # The restart: unless-stopped line in your docker-compose.yml file 
+                        # tells Docker to automatically restart the container unless it was stopped manually.
+                        
     ports:
       - "8000:8000" # The ports section in your docker-compose.yml file is used to map network 
                     # ports from the container to the host machine. The line - "8000:8000" means that 
