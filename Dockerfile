@@ -1,5 +1,7 @@
 # ARQUIVO DE DEFINIÇÃO DO DOCKER
 #
+# AQUI VAI TUDO O QUE MODIFICA A IMAGEM
+#
 # DEVE-SE BAIXAR UMA IMAGEM DO DOCKERHUB PARA SER PASSADA NO FROM. UMA Imagem base do Python
 # https://hub.docker.com/search?q=python OPTAR PELAS IMAGENS OFICIAIS (https://hub.docker.com/_/python)
 # 
@@ -28,7 +30,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 8000
+EXPOSE 8000 
 
 # Command to run the application
 ## BOM PARA DESENVOLVIMENTO, MAS NÃO É BOM PARA PRODUÇÃO, POIS O --reload RECARREGA A APLICAÇÃO A CADA MUDANÇA NO CÓDIGO

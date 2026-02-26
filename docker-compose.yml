@@ -1,4 +1,10 @@
 #
+# Para evitar de ficar rodando o comando docker run, apenas executar docker composer up -d, no mesmo diretório do composer file
+#
+# https://cursos.alura.com.br/imersoes/aulas/aula-02-c172
+#
+# AQUI VAI TUDO QUE MODIFICA A EXECUÇÃO
+#
 #version: "3.8"
 
 services:
