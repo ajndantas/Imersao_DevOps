@@ -26,3 +26,18 @@ services:
                     # within the container (such as a web server or API) by connecting to localhost:8000 
                     # on your machine. This mapping is essential for making containerized applications 
                     # accessible from outside the Docker environment.
+
+# COMPARAÇÃO DOCKERFILE VS DOCKER COMPOSE: https://chatgpt.com/share/69a057b7-ea98-8006-ae3f-9e565a5ce05c
+# 🧠 Forma mental simples de lembrar
+
+#Se a pergunta for:
+
+#Isso muda a imagem?
+
+#Então vai no Dockerfile.
+
+#Se a pergunta for:
+
+#Isso muda como o container roda?
+
+#Então vai no docker-compose.
