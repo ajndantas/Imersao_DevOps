@@ -55,3 +55,35 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 #INFO:     Application startup complete.
 #
 # PODEMOS DISPONIBILIZAR A IMAGEM PARA SER BAIXADA, E DEPOIS SER EXECUTADA.
+
+# Qual é a diferença entre CMD e RUN no Dockerfile ?
+
+# O Gemini disse
+# Essa é uma das dúvidas mais comuns de quem está começando com Docker! A diferença fundamental é quando o comando é executado e o que ele faz com a imagem.
+
+# 1. RUN: A fase de construção (Build)
+# O RUN é executado durante o processo de criação da imagem. Pense nele como uma "instalação".
+
+# O que faz: Executa um comando, salva o resultado (commit) e cria uma nova camada na imagem.
+
+# Exemplos: Instalar pacotes (apt-get install), criar pastas (mkdir), baixar dependências (npm install) ou compilar código.
+
+# Frequência: Ele roda apenas uma vez (no build). O resultado fica "congelado" dentro da imagem.
+
+# 2. CMD: A fase de execução (Runtime)
+# O CMD define o comando padrão que o container executará quando for iniciado.
+
+# O que faz: Não altera a imagem. Ele apenas diz: "Ei, quando esse container subir, rode isso aqui".
+
+# Exemplos: Iniciar um servidor web (apache2ctl -D FOREGROUND), rodar um script de entrada ou iniciar o n8n (n8n start).
+
+# Frequência: Roda toda vez que você inicia o container.
+
+# Sobrescrita: Se você rodar docker run imagem ls, o ls vai ignorar o CMD que você definiu no Dockerfile.
+
+# Tabela Comparativa
+# Característica	RUN	                                        CMD
+# Momento	        Durante o docker build.	                    Durante o docker run.
+# Objetivo	    Instalar software e preparar o ambiente.	Iniciar a aplicação principal.
+# Resultado	    Cria camadas permanentes na imagem.	        Não altera a imagem, apenas define o processo.
+# Quantidade	    Pode ter vários no Dockerfile.	            Apenas o último no arquivo é considerado.
