@@ -19,7 +19,7 @@ FROM python:3.13.5-alpine3.22
 # Set the working directory. PASTA DO CONTAINER ONDE OS COMANDOS SERÃO EXECUTADOS
 WORKDIR /app
 
-# Copy the requirements file into the container
+# Copy the requirements file into the container. O arquivo requirements.txt deve estar no mesmo diretório do Dockerfile, ou o caminho deve ser ajustado.
 COPY requirements.txt .
 
 # Install the dependencies
