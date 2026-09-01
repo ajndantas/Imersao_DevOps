@@ -24,17 +24,18 @@ COPY requirements.txt .
 
 # Install the dependencies
 # O --no-cache-dir evita que o pip armazene os pacotes baixados em cache, sempre fazendo instalações do zero, caso algum arquivo tenha sido alterado.
+# A DIFERENÇA PARA O CMD, É QUE O RUN RODA EM TEMPO DE CONSTRUCAO (BUILD), O CMD RODA EM TEMPO DE EXECUCAO (RUNTIME)
 RUN pip install --no-cache-dir -r requirements.txt 
 
 # Copy the rest of the application code into the container
 COPY . .
 
-# Expose the port the app runs on
+# Expose the port the container runs on
 EXPOSE 8000 
 
 # Command to run the application
 ## BOM PARA DESENVOLVIMENTO, MAS NÃO É BOM PARA PRODUÇÃO, POIS O --reload RECARREGA A APLICAÇÃO A CADA MUDANÇA NO CÓDIGO
-#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"] 
+#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"] # A PORTA AQUI É A MESMA DO EXPOSE
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # PARA CRIAR A IMAGEM, EXECUTAR O COMANDO ABAIXO NO TERMINAL, AONDE PARA -t É PASSADA A IMAGEM:TAG, QUE POR PADRÃO, CASO NÃO PASSADA, FICA COM A TAG latest. 
@@ -44,7 +45,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 #
 # docker images -> PARA VER AS IMAGENS CRIADAS
 #
-# docker run -p 8000:8000 <nome da imagem> -> PARA RODAR A IMAGEM CRIADA, MAPEANDO A PORTA 8000 DO CONTAINER PARA A PORTA 8000 DA APLICAÇÃO
+# docker run -p 8000:8000 <nome da imagem> -> PARA RODAR A IMAGEM CRIADA, MAPEANDO A PORTA 8000 DA APLICAÇÃO (FORA) PARA A PORTA 8000 DO CONTAINER (DENTRO)
 #
 #(venv) PS G:\Meu Drive\Cursos e Treinamentos\Cientista de Dados\Treinamento Python\Imersao DevOps Alura> docker run -p 8000:8000 api
 #INFO:     Will watch for changes in these directories: ['/app']
